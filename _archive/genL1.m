@@ -20,8 +20,8 @@ function [b u] = genL1(X,y,D,l)
 D = D(sum(abs(D)')>0,:);
 options = optimset('Display','off');
 r = qr(X,0);
-invX=r\(r'\X');
-% invX = pinv(X); % 
+% invX=r\(r'\X');
+invX = sppinv(X); 
 ytilde = X*invX*y; 
 Dtilde = D*invX; 
 H = Dtilde*Dtilde'; 
@@ -29,3 +29,20 @@ f = -Dtilde*ytilde;
 m = size(D,1); 
 u = quadprog(H,f,[],[],[],[],ones(m,1)*-l,ones(m,1)*l,[],options);
 b = invX*(ytilde - Dtilde'*u); 
+
+
+% plot(b); shg
+
+% %%
+% for ll = 1:10; 
+%     l = 1/ll; 
+% u = quadprog(H,f,[],[],[],[],ones(m,1)*-l,ones(m,1)*l,[],options);
+% B(:,ll) = X'*a - D'*u;
+% end
+function invX = sppinv(X)
+
+% invX = inv(X'*X)*X'
+XtX = X'*X; 
+invX = inv(XtX)*X';
+% max(invX(:))
+

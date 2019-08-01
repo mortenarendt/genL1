@@ -1,4 +1,5 @@
 clear; clc;
+cd '/Users/mortenarendtrasmussen/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/MATLAB/work/Sparsity_in_chemometrics/genSMR'
 load HPLCforweb.mat
 % remove sample 119
 X = HPLCforweb([1:118 120],:);

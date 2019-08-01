@@ -17,7 +17,7 @@ LL{2}= linspace(thr,lambda(2),npt(2));
 % LL = LL(:,2:end); 
 % generate cvindex
 nsplit = round(sqrt(n));
-%cvID = mkcvindex(n,'rnd',nsplit);
+cvID = mkcvindex(n,'rnd',nsplit);
 YHAT = []; design = []; BB = []; 
 for i = 1:npt(1)
     i

@@ -1,25 +1,26 @@
+cd '~/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/MATLAB/work/Sparsity_in_chemometrics/genSMR'
 clear; clc; close all;
-load 'NIRbeer.mat'
+load '~/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/Course and teaching/Advanced Chemometrics 2013-2014/data/beer.mat'
 
 % lambda1 = 1; 
 % lambda2 = 1; 
 % D = [flD*lambda2; lD*lambda1]; 
-%load 'NIRbeer.mat'
-%mx = mean(x);
-%sx = sqrt(std(x));
-%x = (x -  ones(size(x,1),1)*mx)*diag(1./sx); 
+x = beer.data;
+mx = mean(x);
+sx = sqrt(std(x));
+x = (x -  ones(size(x,1),1)*mx)*diag(1./sx); 
 %
 %%x = scale(x,mx,sx); 
 % xt = scale(beertest.data,mx,sx);
-%xt = (beertest.data -  ones(size(beertest.data,1),1)*mx)*diag(1./sx); 
-%my = mean(extract.data);
-%sy = std(extract.data);
-%y = (extract.data - my)/sy;
-%yt = (extracttest.data - my)/sy;
+xt = (beertest.data -  ones(size(beertest.data,1),1)*mx)*diag(1./sx); 
+my = mean(extract.data);
+sy = std(extract.data);
+y = (extract.data - my)/sy;
+yt = (extracttest.data - my)/sy;
 % [y my sy] = auto(extract.data); 
 % yt = scale(extracttest.data,my,sy);
-%wl = beer.axisscale{2};
-%save NIRbeer.mat x xt y yt wl my sy mx sx
+wl = beer.axisscale{2};
+save NIRbeer.mat x xt y yt wl my sy mx sx
 %%
 % [T P W B] = genL1pls(x,y,2,D);
 % crossvalidate it 
@@ -34,7 +35,6 @@ resSIMpls = crossval(x,y,'sim',results.cvid,12);
 [reg,ssq,xlds,ylds,wts,xscrs,yscrs,basis] = simpls(x,y,nlv);
 
 res = results
-
 clc; 
 [regP idbest] = plot_cvgenL1pls(res);
 [regP2 idbest2] = plot_cvgenL1pls(results2);

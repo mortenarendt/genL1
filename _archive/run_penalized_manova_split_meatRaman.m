@@ -1,14 +1,16 @@
+cd '/Users/mortenarendtrasmussen/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/MATLAB/work/Sparsity_in_chemometrics/genSMR'
 clear; clc; close all;
+load '/Users/mortenarendtrasmussen/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/Course and teaching/ASCA belgium 2015/Data/BeerData.mat'
 % pca(auto(lgX),2);
 % x = auto(lgX.data);r = cluster(x');close all;x = x(:,r.order);d = mkdesignmatrix(lgX.class{1,2});
-load 'RamanMeat.mat'
-[~,id1] = min(abs(Xpp.axisscale{2} - 700));
-[~,id2] = min(abs(Xpp.axisscale{2} - 1100));
+load '/Users/mortenarendtrasmussen/Dropbox (Huttenhower Lab)/Backup/MyDocumentsOnC/Course and teaching/ASCA belgium 2015/Data/MeatRaman.mat'
+[~,id1] = min(abs(Xpp.axisscale{2} - 700))
+[~,id2] = min(abs(Xpp.axisscale{2} - 1100))
 
 % select temperatures
 tempsel = [52 54 62 70];
-tempid = ismember(Xpp.class{1,1},tempsel);
-timeid = ismember(Xpp.class{1,2},[2]);
+tempid = ismember(Xpp.class{1,1},tempsel)
+timeid = ismember(Xpp.class{1,2},[2])
 % pca(mncn(Xpp),2)
 % X = Xpp(tempid & timeid,id1:id2); 
 X = Xpp(tempid & timeid,:); 
